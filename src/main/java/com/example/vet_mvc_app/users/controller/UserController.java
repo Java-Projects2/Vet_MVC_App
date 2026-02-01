@@ -39,7 +39,7 @@ public class UserController {
         // For debugging, just return it as plain text
         return ResponseEntity.ok(token);
     }
-    @PostMapping
+/*    @PostMapping
     public ResponseEntity<String> createUser(
 
             @Valid
@@ -47,7 +47,7 @@ public class UserController {
             CreateUserRequest request) {
         String response = userService.createUser(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
-    }
+    }*/
 
     @GetMapping
     public ResponseEntity<List<UserResponse>> getAllUsers() {
