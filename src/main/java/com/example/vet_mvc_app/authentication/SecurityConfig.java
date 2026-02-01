@@ -50,6 +50,9 @@ public class SecurityConfig {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
+                .formLogin(httpForm -> {
+                    httpForm.loginPage("/login").permitAll();
+                })
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint((request, response, authException) -> {
@@ -70,8 +73,19 @@ public class SecurityConfig {
                 )
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(c -> c
-                        .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
+
+                        // MVC pages (Thymeleaf)
+                        .requestMatchers("/", "/home", "/index").permitAll()
+                        .requestMatchers("/register", "/users/register").permitAll()
+                        .requestMatchers("/login", "/users/login").permitAll()
+                        .requestMatchers("/register-success", "/success").permitAll()
+
+                        // Static resources
+                        .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
+                        .requestMatchers("/error", "/favicon.ico").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+                        .requestMatchers("/simple").permitAll()
                         .anyRequest().authenticated());
 
         return http.build();
