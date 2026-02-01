@@ -1,12 +1,10 @@
 package com.example.vet_mvc_app.users.entity;
 
-import com.example.vet_mvc_app.clinics.enitity.Clinic;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;

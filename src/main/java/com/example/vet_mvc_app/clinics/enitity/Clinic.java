@@ -7,7 +7,11 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -15,6 +19,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "clinic", schema = "vetmvc")
+@EntityListeners(AuditingEntityListener.class)
 public class Clinic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,6 +45,12 @@ public class Clinic {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "vet_id", nullable = false)
     private User vet;
+    @CreatedDate
+    @Column(name = "createdAt")
+    private Instant createdAt;
+    @LastModifiedDate
+    @Column(name = "updatedAt")
+    private Instant updatedAt;
 
     @OneToMany(mappedBy = "clinic")
     private Set<Appointment> appointments = new LinkedHashSet<>();
