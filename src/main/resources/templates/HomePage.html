@@ -1,10 +1,105 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Simple Page</title>
-</head>
-<body>
-<h1>Simple Page Works!</h1>
-<p>If you see this, Thymeleaf is working.</p>
-</body>
-</html>
+<div th:fragment="content">
+    <header class="hero-section">
+        <div class="container text-center text-md-start">
+            <div class="col-md-6">
+                <h1 class="display-3 fw-bold">Connecting You & Your Best Friend</h1>
+                <p class="lead mb-4">Professional veterinary care is just a few clicks away. Hassle-free booking for your beloved pets.</p>
+                <a href="/book" class="btn btn-success btn-lg px-5 py-3 rounded-pill shadow">Book an Appointment</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-5">
+        <div class="container text-center mb-5">
+            <h2 class="fw-bold">Our Services</h2>
+            <p class="text-muted">Comprehensive care tailored to your pet's needs</p>
+        </div>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card service-card h-100 p-4 text-center">
+                        <div class="icon-box mb-3"><i class="bi bi-calendar-check"></i></div>
+                        <h5>General Consultations</h5>
+                        <p class="small text-muted">Vaccinations, wellness exams, and general health checkups.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card service-card h-100 p-4 text-center">
+                        <div class="icon-box mb-3"><i class="bi bi-clipboard2-pulse"></i></div>
+                        <h5>Specialty Care</h5>
+                        <p class="small text-muted">Dental surgery, internal medicine, and diagnostic imaging.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card service-card h-100 p-4 text-center">
+                        <div class="icon-box mb-3"><i class="bi bi-heart-pulse"></i></div>
+                        <h5>Dermatology</h5>
+                        <p class="small text-muted">Skin allergies, ear infections, and chronic itch management.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card service-card h-100 p-4 text-center">
+                        <div class="icon-box mb-3"><i class="bi bi-house-door"></i></div>
+                        <h5>Home Visits</h5>
+                        <p class="small text-muted">Convenient care provided in the comfort of your home.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800" alt="Vet with dog" class="img-fluid rounded-3 shadow">
+                </div>
+                <div class="col-md-6 ps-md-5">
+                    <h2 class="fw-bold mb-4">Why Choose Us?</h2>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i> Easy Online Booking 24/7</li>
+                        <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i> Qualified & Caring Vets</li>
+                        <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i> Digital Health Records</li>
+                        <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i> Reminders for Vaccinations</li>
+                        <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i> Multi-pet Profile Management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5">What Our Users Say</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card testimonial-card p-4">
+                        <p class="fst-italic">"Booking was a breeze! My cat, Mittens, had her shots done in 20 minutes."</p>
+                        <h6 class="fw-bold mb-0">- Jane Doe</h6>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card testimonial-card p-4">
+                        <p class="fst-italic">"Finally, an easy way to manage all my pets' appointments in one place."</p>
+                        <h6 class="fw-bold mb-0">- John Smith</h6>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card testimonial-card p-4">
+                        <p class="fst-italic">"The reminders are life savers. I never miss a heartworm pill anymore."</p>
+                        <h6 class="fw-bold mb-0">- Sarah Wilson</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<th:block th:fragment="home-styles">
+    <style>
+        .registration-container { max-width: 600px; margin: 50px auto; padding: 30px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+        .form-control:focus { border-color: #80bdff; box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); }
+        .error-message { color: #dc3545; font-size: 0.875rem; margin-top: 0.25rem; }
+        .field-required::after { content: " *"; color: #dc3545; }
+    </style>
+</th:block>
