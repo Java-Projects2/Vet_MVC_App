@@ -1,5 +1,4 @@
 package com.example.vet_mvc_app.clinics.controller;
-
 import com.example.vet_mvc_app.clinics.dto.CreateClinicDto;
 import com.example.vet_mvc_app.clinics.dto.ResponseClinicDto;
 import com.example.vet_mvc_app.clinics.dto.UpdateClinicDto;
@@ -17,7 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/clinics")
+@RequestMapping("/api/clinics")
 public class ClinicController {
     private final ClinicService clinicService;
     private final UserRepository userRepository;
@@ -30,7 +29,7 @@ public class ClinicController {
     @PostMapping
     public String createClinic(@ModelAttribute("clinicDto") CreateClinicDto dto, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "clinics";
+            return "clinic/clinics";
         }
         Clinic clinic = clinicService.createClinic(dto);
         model.addAttribute("clinic", clinic);
@@ -42,8 +41,9 @@ public class ClinicController {
                          @RequestParam(defaultValue = "10") int size, Model model) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").ascending());
         Page<ResponseClinicDto> clinicsPage = clinicService.getAll(pageable);
-        model.addAttribute("clinicsPage", clinicsPage);
-        return "clinics";
+        model.addAttribute("clinicDto", new CreateClinicDto());
+        return "clinic/clinics";
+
     }
 
     @PatchMapping("{id}")
@@ -54,7 +54,7 @@ public class ClinicController {
         }
         Clinic updateClinic = clinicService.updateClinic(dto, id);
         model.addAttribute("clinic", updateClinic);
-        return "clinics/success";
+        return "clinic/success";
     }
 
 }
