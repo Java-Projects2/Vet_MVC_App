@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Success</title>
+</head>
+<body>
+
+<h2>Operation Successful ✅</h2>
+
+<p th:if="${clinic != null}">
+    Clinic <strong th:text="${clinic.name}"></strong> saved successfully.
+</p>
+
+<a th:href="@{/clinics}">Back to Clinics</a>
+
+</body>
+</html>

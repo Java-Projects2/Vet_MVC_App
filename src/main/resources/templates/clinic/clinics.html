@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Clinics</title>
+</head>
+<body>
+
+<h2>All Clinics</h2>
+
+<!-- ===== Clinics Table ===== -->
+<table border="1">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Vet</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="clinic : ${clinicsPage.content}">
+        <td th:text="${clinic.name}"></td>
+        <td th:text="${clinic.address}"></td>
+        <td th:text="${clinic.phone}"></td>
+        <td th:text="${clinic.vetName}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+
+<!-- ===== Pagination ===== -->
+<div>
+    <span th:text="'Page ' + ${clinicsPage.number + 1} + ' of ' + ${clinicsPage.totalPages}"></span>
+
+    <div>
+        <a th:if="${clinicsPage.hasPrevious()}"
+           th:href="@{/clinics(page=${clinicsPage.number - 1})}">
+            Previous
+        </a>
+
+        <a th:if="${clinicsPage.hasNext()}"
+           th:href="@{/clinics(page=${clinicsPage.number + 1})}">
+            Next
+        </a>
+    </div>
+</div>
+
+<hr/>
+
+<!-- ===== Create Clinic Form ===== -->
+<h2>Create Clinic</h2>
+
+<form th:action="@{/api/clinics}" method="post" th:object="${clinicDto}">
+    <div>
+        <label>Name:</label>
+        <input type="text" th:field="*{name}"/>
+    </div>
+
+    <div>
+        <label>Address:</label>
+        <input type="text" th:field="*{address}"/>
+    </div>
+
+    <div>
+        <label>Phone:</label>
+        <input type="text" th:field="*{phone}"/>
+    </div>
+
+    <div>
+        <label>Vet ID:</label>
+        <input type="number" th:field="*{vetId}"/>
+    </div>
+
+    <button type="submit">Create</button>
+</form>
+
+</body>
+</html>
